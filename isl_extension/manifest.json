@@ -1,19 +1,29 @@
 {
   "manifest_version": 3,
-  "name": "ISL Assistant for YouTube (Demo)",
-  "version": "1.0",
-  "description": "Convert text in YouTube videos into Indian Sign Language animations. (Prototype)",
-  "permissions": ["activeTab", "scripting"],
-  "host_permissions": ["https://www.youtube.com/*"],
+  "name": "ISL Assistant (Screen Share Mode)",
+  "version": "3.0",
+  "description": "Captures YouTube audio via Screen Share API",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "http://localhost:5000/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
       "matches": ["https://www.youtube.com/*"],
-      "js": ["content.js"],
-      "run_at": "document_idle"
+      "js": ["content.js"]
     }
   ],
-  "icons": {
-    "16": "icon16.png",
-    "48": "icon48.png",
-    "128": "icon128.png"
-  }
+  "web_accessible_resources": [
+    {
+      "resources": ["icon16.png", "icon48.png", "icon128.png"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
